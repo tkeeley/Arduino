@@ -1,0 +1,95 @@
+/*
+
+7/13/14
+Tim Keeley 
+Mustache POV using an AtTiny 85. Output pins are 0,1,2,3,4.
+
+*/
+
+
+
+int _[] = {0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0};  // space
+int A[] = {0,0,1,0,0, 0,0,1,1,0, 0,0,1,1,1, 0,1,1,1,0, 1,1,1,0,0};  //left side of mustache
+int B[] = {1,1,1,0,0, 0,1,1,1,0, 0,0,1,1,1, 0,0,1,1,0, 0,0,1,0,0};  //right side of mustache
+int letterSpace;
+int dotTime;
+
+void setup()
+
+{
+  // setting the pins of the leds to OUTPUT
+  pinMode(0, OUTPUT);
+  pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+ 
+  // defining the space between the letters (ms)
+  letterSpace = 3  ;
+  
+  // defining the time dots appear (ms)
+  dotTime = 1;
+ 
+}
+
+void printLetter(int letter[])
+
+{
+  int y;
+ 
+  // printing the first y row of the letter
+  for (y=0; y<5; y++)
+  {
+    digitalWrite(y+0, letter[y]);
+  }
+  delay(dotTime);
+ 
+  // printing the second y row of the letter
+  for (y=0; y<5; y++)
+  {
+    digitalWrite(y+0, letter[y+5]);
+  }
+  delay(dotTime);
+ 
+  // printing the third y row of the letter
+  for (y=0; y<5; y++)
+  {
+    digitalWrite(y+0, letter[y+10]);
+  }
+  delay(dotTime);
+ 
+ // printing the fourth y row of the letter
+  for (y=0; y<5; y++)
+  {
+    digitalWrite(y+0, letter[y+15]);
+  }
+  delay(dotTime);
+  
+  // printing the fifth y row of the letter
+  for (y=0; y<5; y++)
+  {
+    digitalWrite(y+0, letter[y+20]);
+  }
+  delay(dotTime);
+  
+  // printing the space between the letters
+  for (y=0; y<5; y++)
+  {
+    digitalWrite(y+0, 0);
+  }
+  delay(letterSpace);
+}
+
+void loop()
+
+{
+  // print A for the left side and B for the right side of the mustache
+  
+  
+
+  printLetter(_);
+  printLetter(A);
+  printLetter(B);
+}
+ 
+ //Now you're looking classy!

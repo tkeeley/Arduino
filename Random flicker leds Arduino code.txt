@@ -1,0 +1,68 @@
+/*
+
+* randomly flickering LEDs
+ 
+*/
+
+
+int ledPin[] ={
+0, 1,};         // pwm pins only
+
+int ledState[2];               // last state of each led
+
+long randNumber;
+
+
+
+
+void setup() {
+
+  for (int i=0; i<=3; i++){      // set each led pin as an output
+    pinMode(ledPin[i], OUTPUT);   
+    
+  
+}
+  
+
+randomSeed(analogRead(0));     // seed the rnd generator with noise from unused pin
+
+ 
+
+ for (int i=0; i<=3; i++){      // init. each led with a random value
+    ledState[i] = random(20, 201);
+ 
+
+ }
+
+}
+
+
+
+void loop(){ 
+  
+for (int i=0; i<2; i++){                  // for each led   
+analogWrite(ledPin[i], ledState[i]);     // set the pwm value of that pin determined previously
+    
+randNumber = random(-40, 41);            // generate new random number and add that to the current value
+   
+ledState[i] += randNumber;               // that range can be tweaked to change the intensity of the flickering
+    
+if (ledState[i] > 200) {                 // clamp the limits of the pwm values so it remains within
+      
+  ledState[i] = 200;                     // a pleasing range as well as the pwm range
+    
+
+}
+    
+
+if (ledState[i] < 10) {
+     
+ ledState[i] = 10;
+    
+ }
+  
+}
+  
+delay(100);    // the delay between changes
+
+}

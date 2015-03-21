@@ -1,0 +1,61 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2); //pins connected to lcd
+const int trigPin = 7;     //sets trigger pin to pin 7
+const int echoPin = 8;     //sets echo pin to pin 8
+
+
+void setup()
+{ 
+  lcd.begin(16, 2); 
+  lcd.print("testing..."); 
+}
+
+void loop() {
+
+  long duration, inches, cm;
+  pinMode(trigPin, OUTPUT); 
+  digitalWrite(trigPin, LOW); 
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH); 
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  pinMode(echoPin, INPUT); 
+  duration = pulseIn(echoPin, HIGH);
+
+  inches = microsecondsToInches(duration); 
+  cm = microsecondsToCentimeters(duration); 
+
+  lcd.clear(); 
+  lcd.setCursor(8, 0);  // set the cursor to column 8, line 0
+  lcd.print(" ");      //prints value read by ping in inches
+  lcd.setCursor(8, 0);
+  lcd.print(inches);
+  lcd.setCursor(8, 1);   // set the cursor to column 8, line 1
+  lcd.print(" ");  //prints value read by ping in cm
+  lcd.setCursor(8, 1);
+  lcd.print(cm);
+
+
+
+
+  lcd.setCursor(0, 0); // set the cursor to column 0, line 0
+
+    lcd.print("in "); 
+  lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
+
+    lcd.print("cm");
+
+
+  delay(100); 
+}
+
+long microsecondsToInches(long microseconds) {
+  return microseconds / 74 / 2; 
+}
+
+long microsecondsToCentimeters(long microseconds) { 
+  return microseconds / 29 / 2; 
+} 
+

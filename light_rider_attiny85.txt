@@ -1,0 +1,33 @@
+/*
+Led light rider using Attiny85 and shift register
+*/
+
+
+const int SER   =0;    //Serial Output to Shift Register
+const int LATCH =1;    //Shift Register Latch Pin
+const int CLK   =2;   //Shift Register Clock Pin
+
+//Sequence of LEDs
+int seq[14] = {1,2,4,8,16,32,64,128,64,32,16,8,4,2};
+
+void setup()
+{
+  //Set pins as outputs
+  pinMode(SER, OUTPUT);
+  pinMode(LATCH, OUTPUT);
+  pinMode(CLK, OUTPUT);
+}
+
+void loop()
+{
+  for (int i = 0; i < 14; i++)
+  {
+    digitalWrite(LATCH, LOW);             //Latch Low - start sending data
+    shiftOut(SER, CLK, MSBFIRST, seq[i]); //Send data, Most Significant Bit first
+    digitalWrite(LATCH, HIGH);            //Latch High - stop sending data
+    delay(10);                           //Animation Speed
+  }
+}
+
+
+

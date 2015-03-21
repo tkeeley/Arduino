@@ -1,0 +1,26 @@
+// Control a servo using a flex sensor 
+// by Tim Keeley 
+
+#include <Servo.h> 
+
+Servo myservo;  // create servo object 
+
+int flexpin = 0;  //pin to connect flex sensor
+int val;    // read value flex sensor
+
+void setup() 
+{ 
+  myservo.attach(9);  // Servo attacthed to pin 9 
+  Serial.begin(9600);
+
+} 
+
+void loop() 
+{ 
+  Serial.println(val);
+  val = analogRead(flexpin);            // reads the value of the flex sensor
+  val = map(val, 22, 9, 0, 100);     // scale it to use it with the servo (value between 0 and 180) this determines the distance of travel.
+  myservo.write(val);                  // sets the servo 
+  delay(15);                           // waits for the servo to get there 
+} 
+
