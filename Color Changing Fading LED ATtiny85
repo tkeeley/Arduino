@@ -3,7 +3,7 @@ Color changing fading light for ATtiny85 and RGB LED. I know only pins 0 and 1 s
  */
 
 const int RLED=0; //Red LED lead pin 0
-const int GLED=1; //Green lead LED pin 1
+const int GLED=1; //Green LEDLED pin 1
 const int BLED=2; //Blue LED lead pin 2(no PWM on this pin)
 
 
