@@ -1,0 +1,39 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+const int tiltSensor = 8;
+int steps = 0;
+int switchState = HIGH;
+int prevSwitchState = LOW;
+
+void setup() {
+  lcd.begin(16,2);
+
+  pinMode(tiltSensor, INPUT);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Hey Fatty");
+  lcd.setCursor(0, 1);
+  lcd.print("Start Walking!");
+}
+
+void loop() {
+ switchState = digitalRead(tiltSensor);
+
+  if (switchState != prevSwitchState) {
+
+    if (switchState == LOW) {
+      steps = steps + 1;
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Steps:");
+      lcd.setCursor(0, 1);
+      lcd.print(steps / 5);
+    }
+  }
+  prevSwitchState = switchState;
+}
+
+
