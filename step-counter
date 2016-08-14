@@ -30,7 +30,7 @@ void loop() {
       lcd.setCursor(0, 0);
       lcd.print("Steps:");
       lcd.setCursor(0, 1);
-      lcd.print(steps / 5);
+      lcd.print(steps / 5); //This is because I had no luck getting an accurate debouce on the sensor and didn't want to waste any more time trying
     }
   }
   prevSwitchState = switchState;
