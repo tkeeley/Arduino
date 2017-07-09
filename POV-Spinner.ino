@@ -1,5 +1,9 @@
 //*Thanks to Tinkernut for doing the leg work on this. I just modified his code so there was an option to put a space in the text.
 
+//Download the stl to print this on my Thingiverse here -> https://www.thingiverse.com/thing:2426526
+
+// See the video here -> https://youtu.be/Uyr0nVz_pis
+
 int delayTime = 1; //sub-char delay time 
 int charBreak = 3; //char delay time 
 int LED1 = 0; 
