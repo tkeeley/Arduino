@@ -1,3 +1,5 @@
+//*Thanks to Tinkernut for doing the leg work on this. I just modified his code so there was an option to put a space in the text.
+
 int delayTime = 1; //sub-char delay time 
 int charBreak = 3; //char delay time 
 int LED1 = 0; 
